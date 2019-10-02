@@ -6,22 +6,37 @@ import Colors from "../constants/colors";
 
 const Header = props => {
   return (
-    <View style={styles.header}>
+    <View
+      style={{
+        ...styles.header,
+        ...Platform.select({
+          ios: styles.headerIOS,
+          android: styles.headerAndroid
+        })
+      }}
+    >
       <TitleText>{props.title}</TitleText>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  header: {
+  headerBase: {
     width: "100%",
     height: 90,
     paddingTop: 36,
-    backgroundColor: Platform.OS === "android" ? Colors.primary : "white",
-    borderBottomColor: Platform.OS === "ios" ? "#ccc" : "white",
-    borderBottomWidth: Platform.OS === "ios" ? 1 : 0,
     alignItems: "center",
     justifyContent: "center"
+  },
+  headerIOS: {
+    backgroundColor: "white",
+    borderBottomColor: "#ccc",
+    borderBottomWidth: 1
+  },
+  headerAndroid: {
+    backgroundColor: Colors.primary,
+    borderBottomColor: "white",
+    borderBottomWidth: 0
   },
   headerTitle: {
     color: "black",
