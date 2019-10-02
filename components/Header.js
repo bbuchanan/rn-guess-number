@@ -8,7 +8,7 @@ const Header = props => {
   return (
     <View
       style={{
-        ...styles.header,
+        ...styles.headerBase,
         ...Platform.select({
           ios: styles.headerIOS,
           android: styles.headerAndroid
